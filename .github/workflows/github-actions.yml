@@ -17,6 +17,10 @@ jobs:
           - uses: webfactory/ssh-agent@v0.5.3
             with:
                 ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          - name: "run cypress test"
+            run: echo $HTTP_PROXY
+            env:
+                 HTTP_PROXY: http://127.0.0.1:22548
           - name: Run full test
             env:
               GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
